@@ -1,7 +1,9 @@
 package com.madeintrees.controllers;
 
 import com.madeintrees.model.Subscription;
+import com.madeintrees.model.SubscriptionDeliveryRecord;
 import com.madeintrees.repository.SubscriptionRepository;
+import com.madeintrees.service.SubscriptionDeliveryRecordManager;
 import com.madeintrees.service.SubscriptionManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,16 +22,22 @@ import java.util.List;
 @Controller
 public class UserController {
     @Autowired
+    private SubscriptionDeliveryRecordManager subscriptionDeliveryRecordManager;
+    @Autowired
     private SubscriptionManager subscriptionManager;
     private static final Log _log = LogFactory.getLog(UserController.class);
     @RequestMapping(value = "/user")
     public String showUserPage(Model model){
-        List<Subscription> activeSubscriptions=subscriptionManager.findBySubscriptionStatus("Active");
-        List<Subscription> intializedCodSubscriptions=subscriptionManager.findBySubscriptionStatusAndPaymentType("initialized", "cod");
-        model.addAttribute("activeSubscriptions", activeSubscriptions);
-        model.addAttribute("intializedCodSubscriptions", intializedCodSubscriptions);
-        _log.info("activeSubscriptions : "+activeSubscriptions);
-        _log.info("intializedCodSubscriptions : "+intializedCodSubscriptions);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        List<SubscriptionDeliveryRecord> subscriptionDeliveryRecords=subscriptionDeliveryRecordManager
+                .findByDate(cal.getTime());
+        model.addAttribute("subscriptionDeliveryRecordsToday", subscriptionDeliveryRecords);
+        _log.info("subscriptionDeliveryRecordsToday : "+ subscriptionDeliveryRecords);
         return "userHome";
     }
 }

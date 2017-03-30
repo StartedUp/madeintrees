@@ -10,34 +10,45 @@
 </head>
 <body>
     <div class="container">
-        <h2>Bordered Table</h2>
-        <p>The .table-bordered class adds borders to a table:</p>
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>Reciever name</th>
-                <th>Address</th>
-                <th>Quantity</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-            </tr>
-            <tr>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-            </tr>
-            <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+        <a class="btn btn-default" href="javascript: document.logoutForm.submit()">Logout</a>
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+            <input hidden type="submit" value="Sign Out"/>
+        </form>
+        <h2>List of Active or Initialized subscriptions</h2>
+        <p></p>
+        <div class="table-responsive">
+            <table th:if="${!subscriptionDeliveryRecordsToday.isEmpty()}" class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Receiver's Name</th>
+                    <th>Receiver's mobile</th>
+                    <th>Date</th>
+                    <th>End Date</th>
+                    <th>Quantity per day</th>
+                    <th>Quantity delivered</th>
+                    <th>Total Price</th>
+                    <th>Payment Status</th>
+                    <th>Payment Mode</th>
+                    <th>Delivery Address</th>
+                    <th>Delivered</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="subscriptionDeliveryRecord,stat : ${subscriptionDeliveryRecordsToday}" th:if="${subscriptionDeliveryRecord.subscription.paymentType=='cod' or subscriptionDeliveryRecord.subscription.subscriptionStatus=='active'}">
+                    <td th:text="${subscriptionDeliveryRecord.subscription.deliveryAddress.addressHolderName}"></td>
+                    <td th:text="${subscriptionDeliveryRecord.subscription.subscriber.mobile}"></td>
+                    <td th:text="${#dates.format(subscriptionDeliveryRecord.date, 'dd-MMM-yyyy')}"></td>
+                    <td th:text="${#dates.format(subscriptionDeliveryRecord.subscription.endDate, 'dd-MMM-yyyy')}"></td>
+                    <td th:text="${subscriptionDeliveryRecord.subscription.quantityPerDay}"></td>
+                    <td th:text="${subscriptionDeliveryRecord.quantityDelivered}"></td>
+                    <td th:text="${subscriptionDeliveryRecord.subscription.totalPrice}"></td>
+                    <td th:text="${subscriptionDeliveryRecord.subscription.paymentStatus}"></td>
+                    <td th:text="${subscriptionDeliveryRecord.subscription.paymentType}"></td>
+                    <td th:text="${subscriptionDeliveryRecord.subscription.deliveryAddress}"></td>
+                    <td th:text="${subscriptionDeliveryRecord.delivered}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 </body>
 </html>

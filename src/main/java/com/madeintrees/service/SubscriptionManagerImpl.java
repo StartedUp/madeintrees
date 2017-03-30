@@ -26,4 +26,9 @@ public class SubscriptionManagerImpl implements SubscriptionManager {
     public List<Subscription> findBySubscriptionStatusAndPaymentType(String subscriptionStatus, String paymentType) {
         return subscriptionRepository.findBySubscriptionStatusAndPaymentType(subscriptionStatus, paymentType);
     }
+
+    @Override
+    public Subscription findById(Integer id) {
+        return subscriptionRepository.findById(id);
+    }
 }

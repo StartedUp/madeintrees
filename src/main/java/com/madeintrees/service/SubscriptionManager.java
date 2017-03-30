@@ -10,4 +10,5 @@ import java.util.List;
 public interface SubscriptionManager {
     public List<Subscription> findBySubscriptionStatus(String subscriptionStatus);
     public List<Subscription> findBySubscriptionStatusAndPaymentType(String subscriptionStatus, String paymentType);
+    public Subscription findById(Integer id);
 }
