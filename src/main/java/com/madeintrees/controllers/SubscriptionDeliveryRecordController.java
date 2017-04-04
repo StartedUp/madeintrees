@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by Prithu on 31-03-2017.
@@ -43,6 +44,7 @@ public class SubscriptionDeliveryRecordController {
                     return "redirect:/user?deliveryUpdate=false";
                 } else {
                     subscriptionDeliveryRecord.setSubscription(subscription);
+                    subscriptionDeliveryRecord.setUpdatedAt(new Date());
                     subscriptionDeliveryRecordManager.save(subscriptionDeliveryRecord);
                     return "redirect:/user?deliveryUpdate=true";
                 }
