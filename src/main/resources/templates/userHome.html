@@ -35,6 +35,7 @@
                     <th>Payment Status</th>
                     <th>Payment Mode</th>
                     <th>Delivery Address</th>
+                    <th>Delivery Time</th>
                     <th>Delivered</th>
                     <th>Update</th>
                 </tr>
@@ -51,6 +52,7 @@
                     <td th:text="${subscriptionDeliveryRecord.subscription.paymentStatus}"></td>
                     <td th:text="${subscriptionDeliveryRecord.subscription.paymentType}"></td>
                     <td th:text="${subscriptionDeliveryRecord.subscription.deliveryAddress}"></td>
+                    <td th:text="${subscriptionDeliveryRecord.subscription.preferredDeliveryTime}"></td>
                     <td th:text="${subscriptionDeliveryRecord.delivered}"></td>
                     <td>
                         <a th:id="${'deliveredStatus-'+subscriptionDeliveryRecord.id}" th:if="${!subscriptionDeliveryRecord.delivered}" class="btn btn-primary text-center" data-toggle="modal" th:attr="data-target=${'#updateDelivery-'+subscriptionDeliveryRecord.id}" href="#">Update Delivery</a>
