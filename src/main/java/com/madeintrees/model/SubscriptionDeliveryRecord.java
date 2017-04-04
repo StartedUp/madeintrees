@@ -96,7 +96,7 @@ public class SubscriptionDeliveryRecord {
     public String toString() {
         return "SubscriptionDeliveryRecord{" +
                 "id=" + id +
-                ", subscriptionId=" + subscription.getId() +
+                ", subscription=" + subscription +
                 ", date=" + date +
                 ", updatedAt=" + updatedAt +
                 ", delivered=" + delivered +

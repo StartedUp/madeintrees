@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface SubscriptionDeliveryRecordManager {
     public List<SubscriptionDeliveryRecord> findByDate(Date date);
+    public void save(SubscriptionDeliveryRecord subscriptionDeliveryRecord);
 }

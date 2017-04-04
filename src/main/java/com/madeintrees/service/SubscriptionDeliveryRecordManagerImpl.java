@@ -23,4 +23,9 @@ public class SubscriptionDeliveryRecordManagerImpl implements SubscriptionDelive
     public List<SubscriptionDeliveryRecord> findByDate(Date date) {
         return subscriptionDeliveryRecordRepository.findByDate(date);
     }
+
+    @Override
+    public void save(SubscriptionDeliveryRecord subscriptionDeliveryRecord) {
+        subscriptionDeliveryRecordRepository.save(subscriptionDeliveryRecord);
+    }
 }
