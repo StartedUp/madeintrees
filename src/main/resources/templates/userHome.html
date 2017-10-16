@@ -13,14 +13,15 @@
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <a class="btn btn-default" href="javascript: document.logoutForm.submit()">Logout</a>
-        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-            <input hidden type="submit" value="Sign Out"/>
-        </form>
-        <h2>List of Active or Initialized subscriptions</h2>
-        <p></p>
+<body style="background-color: #76b852" id="page-top" class="index">
+<h2 class="col-lg-12 text-center bold" style="color: saddlebrown;font-family: KacstBook">List of Active or Initialized subscriptions</h2><br><br><br>
+<div class="col-lg-12 text-right bold">
+    <a class="btn btn-default" style="text-align: right" href="javascript: document.logoutForm.submit()">Logout</a>
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Sign Out"/>
+    </form>
+</div>
+<hr>
         <div class="table-responsive">
             <table th:if="${!subscriptionDeliveryRecordsToday.isEmpty()}" class="table table-bordered">
                 <thead>
