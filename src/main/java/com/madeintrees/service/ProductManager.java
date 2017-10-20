@@ -10,8 +10,9 @@ import java.util.List;
  */
 public interface ProductManager {
     public Product save(Product product);
-    /*public List<Event> findAll();
-    public List<Event> findByEndDateAfter(Date endDate);
+    public List<Product> findAll();
+    public void deleteById(int id);
+  /*  public List<Event> findByEndDateAfter(Date endDate);
     public Event findById(Integer eventId);*/
 
 }
