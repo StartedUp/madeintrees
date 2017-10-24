@@ -140,8 +140,8 @@ public class AdminController {
         model.addAttribute("uploadStatus", true);
         return "redirect:/listProducts";
     }
-    @RequestMapping("/photoGallery")
-    public String showphotoGalleryHome(Model model){
+    @RequestMapping("/productGallery")
+    public String showproductGalleryHome(Model model){
         try {
             File file = new File(LOCAL_UPLOAD_PATH);
             String[] names = file.list();
@@ -154,21 +154,29 @@ public class AdminController {
         } catch (Exception e){
             e.printStackTrace();
         }
-        return "photoGalleryHome";
+        return "productGalleryHome";
     }
     @RequestMapping("/showAlbum/{albumName}")
     public String showAlbum(Model model, @PathVariable("albumName") String albumName){
-        String[] imageFiles=null;
+        String[] imageFilesS=null;
+        String[] imageFilesM=null;
+        String[] imageFilesL=null;
         try {
-            File file = new File(LOCAL_UPLOAD_PATH + albumName+"/");
-            imageFiles = file.list();
+            File sfile = new File(LOCAL_UPLOAD_PATH + albumName+"/SMALL/");
+            File mfile = new File(LOCAL_UPLOAD_PATH + albumName+"/MEDIUM/");
+            File lfile = new File(LOCAL_UPLOAD_PATH + albumName+"/LARGE/");
+            imageFilesS = sfile.list();
+            imageFilesM = mfile.list();
+            imageFilesL = lfile.list();
         }catch (Exception e){
             e.printStackTrace();
         }
-        model.addAttribute("path","/img/gallery/");
+        model.addAttribute("path","/images/products/");
         model.addAttribute("heading",albumName);
         model.addAttribute("albumName",albumName);
-        model.addAttribute("imageFiles",imageFiles);
-        return "photoGallery";
+        model.addAttribute("imageFilesSmall",imageFilesS);
+        model.addAttribute("imageFilesMedium",imageFilesM);
+        model.addAttribute("imageFilesLarge",imageFilesL);
+        return "productGalleryDisplay";
     }
 }

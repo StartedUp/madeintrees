@@ -25,7 +25,10 @@
                 <div class="col-lg-2 text-right bold">
                     <a class="btn btn-default" style="text-align: left" href="/uploadImages">Upload Images</a>
                 </div>
-                <div class="col-lg-9 text-right bold">
+                <div class="col-lg-2 text-right bold">
+                    <a class="btn btn-default" style="text-align: left" href="/productGallery">View Product Images</a>
+                </div>
+                <div class="col-lg-7 text-right bold">
                     <a class="btn btn-default" style="text-align: right" href="javascript: document.logoutForm.submit()">Logout</a>
                     <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
                         <input hidden type="submit" value="Sign Out"/>
